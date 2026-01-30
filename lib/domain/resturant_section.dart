@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_self_learning/data/resturant.dart';
+import 'package:flutter_self_learning/domain/restaurant_detail_page.dart';
 class ResturantSection extends StatelessWidget {
   const ResturantSection({super.key});
 
@@ -17,20 +18,27 @@ class ResturantSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 final resturant = restaurantList[index];
 
-                return Card(
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Text(resturant.name),
-                        Text(resturant.cuisine, style: TextStyle(color: Colors.green[800]),),
-                        const Icon(Icons.star,color: Colors.orange,),
-                        Text(resturant.description)
-                      ],
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RestaurantDetailPage(restaurant: resturant,) )
+                      
+                    );
+
+                  },
+                  child: Card(  // ← Add this - your Card widget goes here
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Text(resturant.name),
+                          Text(resturant.cuisine, style: TextStyle(color: Colors.green[800]),),
+                          const Icon(Icons.star, color: Colors.orange,),
+                          Text(resturant.description)
+                        ],
+                      ),
                     ),
-                  )
-                  
-
-
+                  ),
                 );
 
               },
