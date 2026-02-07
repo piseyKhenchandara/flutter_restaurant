@@ -1,46 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_self_learning/domain/resturant_section.dart';
+import 'package:flutter_self_learning/domain/models/restaurant.dart';
+import 'package:flutter_self_learning/domain/models/restaurant_type.dart';
+import 'package:flutter_self_learning/ui/restaurants_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(myApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class myApp extends StatefulWidget {
+  const myApp({super.key});
 
+  @override
+  State<myApp> createState() => _myAppState();
+}
+
+class _myAppState extends State<myApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: WelcomeScreen(),
+      debugShowCheckedModeBanner: false,
+      home: RestaurantsView(restaurants: allRestaurants),
     );
   }
-}
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  List<Restaurant> get allRestaurants {
+    List<Restaurant> result = [
+      Restaurant(
+        name: 'Flutter Burger',
+        address: 'Street 174, Phnom Penh',
+        type: RestaurantType.khmer,
+      ),
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome'),
+      Restaurant(
+        name: 'Les croissants de Ronan',
+        address: 'Sisowath Quay, Phnom Penh',
+        type: RestaurantType.french,
       ),
-      body: ( Column(
-          children: [
-            Text('Welcome to the Restaurant App!'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ResturantSection())
-                );
-              },
-              child: Text('View Restaurants'),
-            ),
-          ],
-        )
+
+      Restaurant(
+        name: 'La Pizza Del Ronano (the best)',
+        address: 'BKK1, Phnom Penh',
+        type: RestaurantType.italian,
       ),
-    );
+
+      Restaurant(
+        name: 'Final Tacos',
+        address: 'Street Exam, Phnom Penh',
+        type: RestaurantType.mexican,
+      ),
+      Restaurant(
+        name: 'No money no Rice',
+        address: 'BKK1, Phnom Penh',
+        type: RestaurantType.streetfood,
+      ),
+
+      Restaurant(
+        name: 'Ronano the Besto',
+        address: 'CADT, Phnom Penh',
+        type: RestaurantType.khmer,
+      ),
+    ];
+    return result;
   }
 }
