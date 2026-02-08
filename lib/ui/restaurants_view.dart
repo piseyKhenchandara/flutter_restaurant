@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_self_learning/domain/models/restaurant.dart';
 import 'package:flutter_self_learning/domain/models/restaurant_type.dart';
+import 'package:flutter_self_learning/ui/restaurantChip.dart';
 
 class RestaurantsView extends StatefulWidget {
   const RestaurantsView({super.key, required this.restaurants});
@@ -49,35 +50,16 @@ class _RestaurantsViewState extends State<RestaurantsView> {
                 const Text('Show only khmer restaurants'),
               ],
             ),
-            ...filteredRestaurants
-                .map((restaurant) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        Container(
-                          color: Colors.grey.shade200,
-                          width: double.infinity,
-                          padding: EdgeInsets.all(5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(restaurant.name),
-                              Row(
-                                children: [
-                                  Chip(
-                                    avatar: Icon(Icons.star, size: 18),
-                                    label: Text("Student"),
-                                  ),
-                                  Chip(label: Text(restaurant.type.name)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                itemCount: filteredRestaurants.length,
+                itemBuilder: (context, index) {
+                  final restaurant = filteredRestaurants[index];
+                  return Restaurantchip(restaurant: restaurant);
+                },
+              ),
+            ),
           ],
         ),
       ),
