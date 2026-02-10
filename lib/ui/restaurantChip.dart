@@ -20,10 +20,7 @@ class Restaurantchip extends StatelessWidget {
               children: [
                 Text(
                   restaurant.name,
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                  ),
+                 
                 ),
 
                 Row(
@@ -41,8 +38,9 @@ class Restaurantchip extends StatelessWidget {
                                 RestaurantCommentsView(restaurant: restaurant),
                           ),
                         );
-                        Chip(label: Text(restaurant.type.name));
+                        
                       },
+                      child: Chip(label: Text(restaurant.type.name)),
                     ),
                   ],
                 ),
