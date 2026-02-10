@@ -32,7 +32,7 @@ class _myAppState extends State<myApp> {
       ),
 
       Restaurant(
-        name: 'Les croissants de Ronan',
+        name: 'Les croissants de Ronan', 
         address: 'Sisowath Quay, Phnom Penh',
         type: RestaurantType.french,
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_self_learning/domain/models/restaurant.dart';
+import 'package:flutter_self_learning/ui/restaurant_comments_view.dart';
 
 class Restaurantchip extends StatelessWidget {
   const Restaurantchip({super.key, required this.restaurant});
@@ -17,14 +18,32 @@ class Restaurantchip extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(restaurant.name),
+                Text(
+                  restaurant.name,
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+
                 Row(
                   children: [
                     Chip(
                       avatar: Icon(Icons.star, size: 18),
                       label: Text("Student"),
                     ),
-                    Chip(label: Text(restaurant.type.name)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                RestaurantCommentsView(restaurant: restaurant),
+                          ),
+                        );
+                        Chip(label: Text(restaurant.type.name));
+                      },
+                    ),
                   ],
                 ),
               ],
